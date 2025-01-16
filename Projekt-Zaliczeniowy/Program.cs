@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Projekt_Zaliczeniowy.Models.SuperHeroes;
+
 namespace Projekt_Zaliczeniowy;
 
 public class Program
@@ -8,6 +11,10 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+        builder.Services.AddDbContext<SuperHeroesDbContext>(option =>
+        {
+            option.UseSqlite(builder.Configuration["SuperHeroesDatabase:ConnectionString"]);
+        });
 
         var app = builder.Build();
 
